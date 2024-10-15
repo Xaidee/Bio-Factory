@@ -1,0 +1,5 @@
+{
+  "parent": "forge:item/bucket",
+  "fluid": "biofactory:nutrients_fluid_gel",
+  "loader": "forge:fluid_container"
+}
