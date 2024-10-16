@@ -4,8 +4,10 @@ import com.github.elenterius.biofactory.BioFactoryMod;
 import com.github.elenterius.biofactory.datagen.loot.ModLootTableProvider;
 import com.github.elenterius.biofactory.datagen.models.ModBlockStateProvider;
 import com.github.elenterius.biofactory.datagen.models.ModItemModelProvider;
+import com.github.elenterius.biofactory.datagen.recipes.ModRecipeProviders;
 import com.github.elenterius.biofactory.datagen.tags.ModBlockTagsProvider;
 import com.github.elenterius.biofactory.datagen.tags.ModItemTagsProvider;
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -14,7 +16,6 @@ import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = BioFactoryMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenHandler {
@@ -37,7 +38,7 @@ public class DataGenHandler {
 		generator.addProvider(includeServer, new ModItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
 
 		//recipes
-//		generator.addProvider(includeServer, new ModRecipeProvider(packOutput));
+		ModRecipeProviders.addProviders(includeServer, generator, packOutput);
 
 		//loot
 		generator.addProvider(includeServer, new ModLootTableProvider(packOutput));

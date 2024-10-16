@@ -1,0 +1,16 @@
+{
+  "type" : "create:compacting",
+  "heatRequirement" : "heated",
+  "ingredients" : [
+    {
+      "amount" : 27,
+      "fluid" : "biofactory:nutrients_fluid_gel",
+      "nbt" : {}
+    }
+  ],
+  "results" : [
+    {
+      "item" : "biomancy:nutrient_bar"
+    }
+  ]
+}

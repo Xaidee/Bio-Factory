@@ -1,0 +1,28 @@
+{
+  "type" : "create:mixing",
+  "ingredients" : [
+    {
+      "item" : "biomancy:nutrient_paste"
+    },
+    {
+      "item" : "biomancy:nutrient_paste"
+    },
+    {
+      "item" : "biomancy:nutrient_paste"
+    },
+    {
+      "item" : "biomancy:nutrient_paste"
+    },
+    {
+      "amount" : 120,
+      "fluid" : "minecraft:water",
+      "nbt" : {}
+    }
+  ],
+  "results" : [
+    {
+      "amount" : 120,
+      "fluid" : "biofactory:nutrients_fluid_gel"
+    }
+  ]
+}
