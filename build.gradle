@@ -15,12 +15,12 @@ plugins {
 jarJar.enable()
 
 /**
- * MAJORMOD.MAJORAPI.MINOR.PATCH
- * @return Hybrid Semantic Version
+ * MAJOR.MINOR.PATCH
+ * @return Semantic Version
  */
 private String getModVersion() {
 	def parsedVersion = new JsonSlurper().parseText(file('mod_version.json').text)
-	return parsedVersion.major + "." + parsedVersion.semantic
+    return parsedVersion.semantic
 }
 
 def mod_version = getModVersion()
