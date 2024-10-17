@@ -13,15 +13,14 @@ jobs :
         with :
           webhook_id : ${{ secrets.DISCORD_ID }}
           webhook_token : ${{ secrets.DISCORD_TOKEN }}
-          color : "#088c7d"
-          username : "Maykr Bot"
-          message : "
-          # :package: Foobar Test
+          color : "#ff0000"
+          username : "Test Bot"
+          message : "# :package: Foobar Test
           
           **Download**
           Foobar
-            
-          ##Changelog
+          \n          
+          ## Changelog
           foobar
           @Numen
           "
