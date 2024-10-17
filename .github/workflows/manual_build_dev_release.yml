@@ -7,46 +7,28 @@ on:
   workflow_dispatch:
 
 jobs:
-  cache_oxipng:
-    name: Cache Oxipng
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cargo Install Oxipng
-        uses: baptiste0928/cargo-install@v2 #provides cache-efficient Rust crates installation
-        with:
-          crate: oxipng
-        env:
-          CARGO_TERM_COLOR: always
-
   build_test:
     name: Gradle Build Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1
+      - name: Validate Gradle Wrapper & Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
-      - name: Setup/Cache Gradle
-        uses: gradle/gradle-build-action@v2
+      - name: Run Test Data Generation
+        run: ./gradlew runData
 
-      - name: Test Asset Generation
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: runData
-
-      - name: Test Build
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: build
+      - name: Run Test Build
+        run: ./gradlew build
 
   changelog:
     name: Generate Changelog
-    needs: [ build_test, cache_oxipng ]
+    needs: [ build_test ]
     runs-on: ubuntu-latest
     outputs:
       skip_build: ${{ steps.set_outputs.outputs.skipped }}
@@ -54,25 +36,25 @@ jobs:
       clean_changelog: ${{ steps.set_outputs.outputs.changelog }}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Get Minecraft Version
         id: gradle_properties
-        uses: christian-draeger/read-properties@1.1.0
+        uses: christian-draeger/read-properties@1.1.1
         with:
           path: './gradle.properties'
           properties: 'minecraft_version'
 
-      - name: Generate Conventional Changelog #this also determines the release version
+      - name: Generate Conventional Changelog
         id: changelog
-        uses: TriPSs/conventional-changelog-action@v3
+        uses: TriPSs/conventional-changelog-action@v5
         with:
           preset: 'conventionalcommits'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version-file: './mod_version.json'
           version-path: 'semantic'
           git-message: 'chore(release): {version}'
-          tag-prefix: '${{ steps.gradle_properties.outputs.minecraft_version }}-v2.'
+          tag-prefix: '${{ steps.gradle_properties.outputs.minecraft_version }}-v'
           create-summary: true
 
       - name: Set Outputs
@@ -93,30 +75,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ needs.changelog.outputs.tag }}
 
-      - name: Setup Oxipng
-        uses: baptiste0928/cargo-install@v2 #provides cache-efficient Rust crates installation
-        with:
-          crate: oxipng
-        env:
-          CARGO_TERM_COLOR: always
-
       - name: Setup JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v4
 
-      - name: Generate Assets
-        uses: gradle/gradle-build-action@v2
+      - name: Run Data Generation
+        run: ./gradlew runData
+
+      - name: Setup Oxipng
+        uses: baptiste0928/cargo-install@v3
         with:
-          arguments: runData
+          crate: oxipng
+        env:
+          CARGO_TERM_COLOR: always
 
       # We store assets at full raw quality in the repository and only optimize them for the release build
       - name: Optimize PNG Assets
@@ -126,16 +106,14 @@ jobs:
         env:
           CARGO_TERM_COLOR: always
 
-      - name: Build Artifact
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: build
+      - name : Run Build Artifact
+        run : ./gradlew build
 
       # ----------------------------------------------------------------------------------------------------------------
 
       - name: Create Release
         id: create_release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ needs.changelog.outputs.tag }}
@@ -144,7 +122,7 @@ jobs:
           prerelease: true
 
       - name: Notify Discord Server
-        uses: appleboy/discord-action@0.0.3
+        uses: appleboy/discord-action@v1.1.0
         with:
           webhook_id: ${{ secrets.DISCORD_ID }}
           webhook_token: ${{ secrets.DISCORD_TOKEN }}

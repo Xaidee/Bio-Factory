@@ -1,4 +1,4 @@
-name: Poke Discord
+name: Send Custom Discord Notification
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
     name: Notify Discord Server
     runs-on: ubuntu-latest
     steps:
-      - uses: appleboy/discord-action@0.0.3
+      - uses: appleboy/discord-action@v1.1.0
         with:
           webhook_id: ${{ secrets.DISCORD_ID }}
           webhook_token: ${{ secrets.DISCORD_TOKEN }}
