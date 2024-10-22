@@ -1,6 +1,10 @@
 package com.github.elenterius.biofactory.init;
 
 import com.github.elenterius.biofactory.BioFactoryMod;
+import com.simibubi.create.content.fluids.VirtualFluid;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -13,24 +17,15 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
-
 public final class ModFluids {
 
 	public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, BioFactoryMod.MOD_ID);
 	public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, BioFactoryMod.MOD_ID);
 
-	public static final RegistryObject<FluidType> NUTRIENTS_FLUID_GEL_TYPE = registerType("nutrients_fluid_gel", properties -> properties.density(1024).viscosity(1024));
-	public static final Supplier<ForgeFlowingFluid.Properties> NUTRIENTS_FLUID_GEL_PROPERTIES = () -> new ForgeFlowingFluid
-			.Properties(NUTRIENTS_FLUID_GEL_TYPE, ModFluids.NUTRIENTS_FLUID_GEL, ModFluids.FLOWING_NUTRIENTS_FLUID_GEL)
-			.slopeFindDistance(0)
-			.levelDecreasePerBlock(8)
-			.block(ModBlocks.NUTRIENTS_FLUID_GEL)
-			.bucket(ModItems.NUTRIENTS_FLUID_GEL_BUCKET_BUCKET);
-	public static final RegistryObject<ForgeFlowingFluid> NUTRIENTS_FLUID_GEL = register("nutrients_fluid_gel", () -> new ForgeFlowingFluid.Source(NUTRIENTS_FLUID_GEL_PROPERTIES.get()));
-	public static final RegistryObject<ForgeFlowingFluid> FLOWING_NUTRIENTS_FLUID_GEL = register("flowing_nutrients_fluid_gel", () -> new ForgeFlowingFluid.Flowing(NUTRIENTS_FLUID_GEL_PROPERTIES.get()));
+	public static final RegistryObject<FluidType> NUTRIENTS_TYPE = registerType("nutrients_fluid", properties -> properties);
+	public static final Supplier<ForgeFlowingFluid.Properties> NUTRIENTS_FLUID_PROPERTIES = () -> new ForgeFlowingFluid.Properties(NUTRIENTS_TYPE, ModFluids.NUTRIENTS_FLUID,
+		ModFluids.NUTRIENTS_FLUID);
+	public static final RegistryObject<ForgeFlowingFluid> NUTRIENTS_FLUID = register("nutrients_fluid", () -> new VirtualFluid(NUTRIENTS_FLUID_PROPERTIES.get()));
 
 	private ModFluids() {}
 

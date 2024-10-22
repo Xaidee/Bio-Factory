@@ -1,15 +1,14 @@
 package com.github.elenterius.biofactory.datagen;
 
 import com.github.elenterius.biofactory.BioFactoryMod;
-import com.github.elenterius.biofactory.init.ModBlocks;
 import com.github.elenterius.biofactory.init.ModFluids;
 import com.github.elenterius.biofactory.init.ModItems;
+import java.util.function.Supplier;
 import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.fluids.FluidType;
-import java.util.function.Supplier;
 
 public class ModLanguageProvider extends net.minecraftforge.common.data.LanguageProvider {
 
@@ -45,9 +44,8 @@ public class ModLanguageProvider extends net.minecraftforge.common.data.Language
 	protected void addTranslations() {
 		add(BioFactoryMod.CREATIVE_TAB, "Bio-Factory");
 
-		addItem(ModItems.NUTRIENTS_FLUID_GEL_BUCKET_BUCKET, "Nutrients Fluid Gel Bucket");
-		addBlock(ModBlocks.NUTRIENTS_FLUID_GEL, "Nutrients Fluid Gel");
-		addFluidType(ModFluids.NUTRIENTS_FLUID_GEL_TYPE, "Nutrients Fluid Gel");
+		addItem(ModItems.NUTRIENTS_BOTTLE, "Bottle of Fluid Nutrients");
+		addFluidType(ModFluids.NUTRIENTS_TYPE, "Nutrients");
 	}
 
 }

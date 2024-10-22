@@ -17,7 +17,7 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
 
 	@Override
 	protected void generate() {
-		add(ModBlocks.NUTRIENTS_FLUID_GEL.get(), noDrop());
+
 	}
 
 	@Override

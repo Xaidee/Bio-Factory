@@ -22,7 +22,7 @@
   "results" : [
     {
       "amount" : 120,
-      "fluid" : "biofactory:nutrients_fluid_gel"
+      "fluid" : "biofactory:nutrients_fluid"
     }
   ]
 }

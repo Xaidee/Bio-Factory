@@ -1,7 +1,8 @@
 package com.github.elenterius.biofactory.datagen.models;
 
 import com.github.elenterius.biofactory.BioFactoryMod;
-import com.github.elenterius.biofactory.init.ModBlocks;
+import java.util.Objects;
+import java.util.function.Supplier;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -9,8 +10,6 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import java.util.Objects;
-import java.util.function.Supplier;
 
 public class ModBlockStateProvider extends BlockStateProvider {
 
@@ -20,7 +19,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		particleOnly(ModBlocks.NUTRIENTS_FLUID_GEL);
 	}
 
 	protected ResourceLocation registryKey(Block block) {

@@ -36,8 +36,7 @@ public final class ClientSetupHandler {
 	public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {}
 
 	private static void setBlockRenderLayers() {
-		ItemBlockRenderTypes.setRenderLayer(ModFluids.NUTRIENTS_FLUID_GEL.get(), RenderType.translucent());
-		ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_NUTRIENTS_FLUID_GEL.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ModFluids.NUTRIENTS_FLUID.get(), RenderType.translucent());
 	}
 
 	@SubscribeEvent

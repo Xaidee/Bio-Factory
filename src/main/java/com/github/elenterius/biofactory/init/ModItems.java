@@ -1,6 +1,7 @@
 package com.github.elenterius.biofactory.init;
 
 import com.github.elenterius.biofactory.BioFactoryMod;
+import com.github.elenterius.biofactory.item.NutrientsBottleItem;
 import com.github.elenterius.biomancy.api.serum.Serum;
 import com.github.elenterius.biomancy.init.ModRarities;
 import com.github.elenterius.biomancy.item.SerumItem;
@@ -10,7 +11,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
@@ -23,7 +23,8 @@ public final class ModItems {
 
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BioFactoryMod.MOD_ID);
 //	public static final RegistryObject<EffectCureItem> NUTRIENT_BAR = registerItem("nutrient_bar", props -> new EffectCureItem(props.food(ModFoods.NUTRIENT_BAR)));
-	public static final RegistryObject<BucketItem> NUTRIENTS_FLUID_GEL_BUCKET_BUCKET = registerItem("nutrients_fluid_gel_bucket", properties -> new BucketItem(ModFluids.NUTRIENTS_FLUID_GEL, properties.craftRemainder(Items.BUCKET).stacksTo(1).rarity(Rarity.COMMON)));
+public static final RegistryObject<NutrientsBottleItem> NUTRIENTS_BOTTLE = registerItem("nutrients_fluid_bottle",
+	properties -> new NutrientsBottleItem(properties.craftRemainder(Items.BUCKET).stacksTo(1).rarity(Rarity.COMMON)));
 
 	private ModItems() {}
 

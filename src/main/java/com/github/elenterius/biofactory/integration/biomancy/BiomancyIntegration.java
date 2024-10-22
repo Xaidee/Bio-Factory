@@ -22,13 +22,19 @@ public final class BiomancyIntegration {
 	private BiomancyIntegration() {}
 
 	public static void onPostSetup() {
-		FluidNutrients.registerFuel(ModFluids.NUTRIENTS_FLUID_GEL_TYPE, FLUID_TO_FUEL_CONVERSION);
+		FluidNutrients.registerFuel(ModFluids.NUTRIENTS_TYPE, FLUID_TO_FUEL_CONVERSION);
 	}
 
 	public static int convertTofluidAmount(ItemStack resource) {
 		int fuelMultiplier = FLUID_TO_FUEL_CONVERSION.getFuelMultiplier(null);
 		int fluidToFuelRatio = FLUID_TO_FUEL_CONVERSION.getFluidToFuelRatio(null);
 		return Nutrients.getFuelValue(resource) * fluidToFuelRatio / fuelMultiplier;
+	}
+
+	public static double convertToFuelAmount(int fluidAmount) {
+		int fuelMultiplier = FLUID_TO_FUEL_CONVERSION.getFuelMultiplier(null);
+		int fluidToFuelRatio = FLUID_TO_FUEL_CONVERSION.getFluidToFuelRatio(null);
+		return (double) fluidAmount / fluidToFuelRatio * fuelMultiplier;
 	}
 
 }

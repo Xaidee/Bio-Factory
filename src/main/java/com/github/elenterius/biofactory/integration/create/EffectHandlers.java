@@ -3,6 +3,7 @@ package com.github.elenterius.biofactory.integration.create;
 import com.github.elenterius.biofactory.init.ModFluids;
 import com.github.elenterius.biomancy.util.CombatUtil;
 import com.simibubi.create.content.fluids.OpenEndedPipe;
+import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidStack;
-import java.util.List;
 
 public final class EffectHandlers {
 
@@ -60,7 +60,7 @@ public final class EffectHandlers {
 
 		@Override
 		public boolean canApplyEffects(OpenEndedPipe pipe, FluidStack fluid) {
-			return fluid.getFluid().getFluidType() == ModFluids.NUTRIENTS_FLUID_GEL_TYPE.get();
+			return fluid.getFluid().getFluidType() == ModFluids.NUTRIENTS_TYPE.get();
 		}
 
 		@Override

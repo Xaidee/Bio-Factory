@@ -3,6 +3,7 @@ package com.github.elenterius.biofactory.datagen.models;
 import com.github.elenterius.biofactory.BioFactoryMod;
 import com.github.elenterius.biofactory.init.ModItems;
 import com.google.gson.JsonObject;
+import java.util.Objects;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BucketItem;
@@ -12,7 +13,6 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-import java.util.Objects;
 
 public class ModItemModelProvider extends ItemModelProvider {
 
@@ -22,7 +22,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
-		dynamicBucket(ModItems.NUTRIENTS_FLUID_GEL_BUCKET_BUCKET.get());
+		basicItem(ModItems.NUTRIENTS_BOTTLE.get());
 	}
 
 	private ResourceLocation registryKey(Item item) {
