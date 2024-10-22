@@ -2,7 +2,6 @@ package com.github.elenterius.biofactory.datagen.recipes;
 
 import com.github.elenterius.biofactory.init.ModFluids;
 import com.github.elenterius.biofactory.integration.biomancy.BiomancyIntegration;
-import com.github.elenterius.biomancy.api.nutrients.Nutrients;
 import com.github.elenterius.biomancy.init.ModItems;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
@@ -20,7 +19,7 @@ public class CompactingRecipeProvider extends ProcessingRecipeProvider {
 				int fluidAmount = BiomancyIntegration.convertTofluidAmount(ModItems.NUTRIENT_BAR.get().getDefaultInstance());
 				if (fluidAmount <= 0) {throw new IllegalArgumentException("Cannot create nutrients_fluid_gel_from_paste with amount of 0");}
 				return recipeBuilder
-					.require(ModFluids.NUTRIENTS_FLUID_GEL.get(), Nutrients.getFuelValue(ModItems.NUTRIENT_BAR.get().getDefaultInstance()))
+					.require(ModFluids.NUTRIENTS_FLUID.get(), fluidAmount)
 					.requiresHeat(HeatCondition.HEATED)
 					.output(ModItems.NUTRIENT_BAR.get());
 			}

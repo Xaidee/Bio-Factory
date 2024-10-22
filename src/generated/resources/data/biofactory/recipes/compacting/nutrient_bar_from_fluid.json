@@ -3,8 +3,8 @@
   "heatRequirement" : "heated",
   "ingredients" : [
     {
-      "amount" : 27,
-      "fluid" : "biofactory:nutrients_fluid_gel",
+      "amount" : 270,
+      "fluid" : "biofactory:nutrients_fluid",
       "nbt" : {}
     }
   ],
