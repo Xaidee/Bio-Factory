@@ -4,8 +4,8 @@ import com.github.elenterius.biofactory.init.ModBlocks;
 import com.github.elenterius.biofactory.init.ModFluids;
 import com.github.elenterius.biofactory.init.ModItems;
 import com.github.elenterius.biomancy.api.livingtool.LivingTool;
-import java.util.Set;
 import com.github.elenterius.biomancy.util.ComponentUtil;
+import java.util.Set;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -53,7 +53,7 @@ public final class BioFactoryMod {
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BioFactoryMod.MOD_ID);
 	public static final RegistryObject<CreativeModeTab> CREATIVE_TAB = CREATIVE_TABS.register("main", () -> CreativeModeTab.builder()
 			.title(ComponentUtil.translatable("tab." + MOD_ID + ".main"))
-			.icon(() -> new ItemStack(com.github.elenterius.biomancy.init.ModItems.LIVING_FLESH.get()))
+		.icon(() -> new ItemStack(ModItems.NUTRIENTS_BOTTLE.get()))
 			.displayItems((params, output) -> {
 				Set<RegistryObject<? extends Item>> hiddenItems = Set.of();
 
