@@ -16,6 +16,8 @@ public final class ModRecipeProviders {
 	public static void addProviders(boolean run, DataGenerator generator, PackOutput output) {
 		RECIPE_PROVIDERS.add(new CompactingRecipeProvider(output));
 		RECIPE_PROVIDERS.add(new MixingRecipeProvider(output));
+		RECIPE_PROVIDERS.add(new FillingRecipeProvider(output));
+		RECIPE_PROVIDERS.add(new EmptyingRecipeProvider(output));
 
 		generator.addProvider(run, new DataProvider() {
 
