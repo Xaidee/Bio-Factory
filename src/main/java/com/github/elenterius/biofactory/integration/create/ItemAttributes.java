@@ -9,12 +9,14 @@ import net.minecraft.world.level.Level;
 
 public final class ItemAttributes {
 
-	public static final ItemAttribute ACID_CORRODIBLE = ItemAttribute.register(new AcidCorrodibleAttribute());
+	public static final ItemAttribute ACID_CORRODIBLE = ItemAttribute.register(AcidCorrodibleAttribute.EMPTY);
 
 	static void register() {
 	}
 
 	public static class AcidCorrodibleAttribute implements ItemAttribute {
+
+		public static final AcidCorrodibleAttribute EMPTY = new AcidCorrodibleAttribute();
 
 		@Override
 		public boolean appliesTo(ItemStack stack, Level world) {
