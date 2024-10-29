@@ -40,12 +40,19 @@ public class ModLanguageProvider extends net.minecraftforge.common.data.Language
 		add(fluidType.getDescriptionId(), translation);
 	}
 
+	protected void addAbility(String id, String text) {
+		add("ability.biomancy." + id, text);
+	}
+
 	@Override
 	protected void addTranslations() {
 		add(BioFactoryMod.CREATIVE_TAB, "Bio-Factory");
 
 		addItem(ModItems.NUTRIENTS_BOTTLE, "Bottle of Fluid Nutrients");
 		addFluidType(ModFluids.NUTRIENTS_TYPE, "Nutrients");
+
+		addAbility("engineers_sight", "Engineer's Sight");
+		addAbility("engineers_sight.desc", "Shows miscellaneous info about Create components");
 	}
 
 }

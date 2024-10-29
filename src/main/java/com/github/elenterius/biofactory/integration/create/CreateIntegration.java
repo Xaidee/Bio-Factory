@@ -10,6 +10,7 @@ public final class CreateIntegration {
 		EffectHandlers.register();
 		FanProcessingTypes.register();
 		ItemAttributes.register();
+		AcolyteArmorUpgrades.register();
 	}
 
 }
