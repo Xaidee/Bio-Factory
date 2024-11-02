@@ -1,7 +1,7 @@
 package com.github.elenterius.biofactory.datagen.recipes;
 
 import com.github.elenterius.biofactory.BioFactoryMod;
-import com.github.elenterius.biofactory.integration.create.AcolyteArmorUpgrades;
+import com.github.elenterius.biofactory.init.create.AcolyteArmorUpgrades;
 import com.github.elenterius.biomancy.api.nutrients.NutrientsContainerItem;
 import com.github.elenterius.biomancy.datagen.recipes.builder.BioForgeRecipeBuilder;
 import com.github.elenterius.biomancy.datagen.recipes.builder.ItemData;

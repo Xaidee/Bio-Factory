@@ -1,4 +1,4 @@
-package com.github.elenterius.biofactory.integration.create;
+package com.github.elenterius.biofactory.init.create;
 
 public final class CreateIntegration {
 

@@ -1,4 +1,4 @@
-package com.github.elenterius.biofactory.integration.create;
+package com.github.elenterius.biofactory.init.create;
 
 import com.github.elenterius.biomancy.init.ModBlocks;
 import com.simibubi.create.AllInteractionBehaviours;

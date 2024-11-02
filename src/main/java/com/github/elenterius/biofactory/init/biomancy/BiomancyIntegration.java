@@ -1,4 +1,4 @@
-package com.github.elenterius.biofactory.integration.biomancy;
+package com.github.elenterius.biofactory.init.biomancy;
 
 import com.github.elenterius.biofactory.init.ModFluids;
 import com.github.elenterius.biomancy.api.nutrients.Nutrients;

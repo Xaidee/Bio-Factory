@@ -1,6 +1,6 @@
 package com.github.elenterius.biofactory.mixin;
 
-import com.github.elenterius.biofactory.integration.create.AcolyteArmorUpgrades;
+import com.github.elenterius.biofactory.init.create.AcolyteArmorUpgrades;
 import com.github.elenterius.biomancy.item.armor.AcolyteArmorItem;
 import java.util.List;
 import net.minecraft.network.chat.Component;

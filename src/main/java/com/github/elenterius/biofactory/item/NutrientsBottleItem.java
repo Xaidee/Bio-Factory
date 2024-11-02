@@ -1,6 +1,6 @@
 package com.github.elenterius.biofactory.item;
 
-import com.github.elenterius.biofactory.integration.biomancy.BiomancyIntegration;
+import com.github.elenterius.biofactory.init.biomancy.BiomancyIntegration;
 import com.github.elenterius.biomancy.init.ModFoods;
 import com.github.elenterius.biomancy.init.ModItems;
 import com.github.elenterius.biomancy.util.MobUtil;

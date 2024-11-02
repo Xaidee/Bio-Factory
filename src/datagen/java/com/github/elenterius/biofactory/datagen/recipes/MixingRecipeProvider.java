@@ -1,7 +1,7 @@
 package com.github.elenterius.biofactory.datagen.recipes;
 
 import com.github.elenterius.biofactory.init.ModFluids;
-import com.github.elenterius.biofactory.integration.biomancy.BiomancyIntegration;
+import com.github.elenterius.biofactory.init.biomancy.BiomancyIntegration;
 import com.github.elenterius.biomancy.init.ModItems;
 import com.simibubi.create.AllRecipeTypes;
 import net.minecraft.data.PackOutput;
