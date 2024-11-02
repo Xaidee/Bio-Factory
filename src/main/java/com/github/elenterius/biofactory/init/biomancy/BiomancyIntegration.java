@@ -63,6 +63,8 @@ public final class BiomancyIntegration {
 		FluidTributes.register(AllFluids.TEA.get(), resource -> BUILDER_TEA_MILLI_TRIBUTE);
 		FluidTributes.register(AllFluids.POTION.get(), POTION_FLUID_TO_TRIBUTE_CONVERSION);
 		FluidTributes.register(AllFluids.HONEY.get(), resource -> HONEY_MILLI_TRIBUTE);
+
+		ArmorUpgrades.register();
 	}
 
 	public static int convertTofluidAmount(ItemStack resource) {

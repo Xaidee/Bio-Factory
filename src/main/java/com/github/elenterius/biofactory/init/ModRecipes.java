@@ -1,27 +1,32 @@
 package com.github.elenterius.biofactory.init;
 
 import com.github.elenterius.biofactory.BioFactoryMod;
-import net.minecraft.core.registries.Registries;
+import com.github.elenterius.biofactory.crafting.AcolyteGogglesUpgradeRecipe;
+import java.util.Objects;
+import java.util.function.Supplier;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Objects;
-import java.util.function.Supplier;
-
 public final class ModRecipes {
 
 	public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, BioFactoryMod.MOD_ID);
-	public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, BioFactoryMod.MOD_ID);
+	//	public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, BioFactoryMod.MOD_ID);
 
 //	public static final RegistryObject<ItemStackRecipeType<DecomposerRecipe>> DECOMPOSING_RECIPE_TYPE = registerItemStackRecipeType("decomposing");
 //	public static final RegistryObject<RecipeSerializer<DecomposerRecipe>> DECOMPOSING_SERIALIZER = registerRecipeSerializer(DECOMPOSING_RECIPE_TYPE, DecomposerRecipe.Serializer::new);
 
 	// DYNAMIC
-//	public static final RegistryObject<RecipeSerializer<CradleCleansingRecipe>> CRADLE_CLEANSING_SERIALIZER = registerDynamicCraftingRecipeSerializer(RecipeType.CRAFTING, "cradle_cleansing", () -> new SimpleCraftingRecipeSerializer<>(CradleCleansingRecipe::new));
+	public static final RegistryObject<RecipeSerializer<AcolyteGogglesUpgradeRecipe>> ACOLYTE_GOGGLES_UPGRADE_SERIALIZER = registerDynamicCraftingRecipeSerializer(RecipeType.CRAFTING,
+		"acolyte_goggles_upgrade",
+		() -> new SimpleCraftingRecipeSerializer<>(AcolyteGogglesUpgradeRecipe::new));
 
 	private ModRecipes() {}
 

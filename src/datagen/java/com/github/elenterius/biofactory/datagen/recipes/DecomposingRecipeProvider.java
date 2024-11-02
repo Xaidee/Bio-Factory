@@ -13,9 +13,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class DecomposerRecipeProvider extends RecipeProvider {
+public class DecomposingRecipeProvider extends RecipeProvider {
 
-	protected DecomposerRecipeProvider(PackOutput packOutput) {
+	protected DecomposingRecipeProvider(PackOutput packOutput) {
 		super(packOutput);
 	}
 
@@ -28,7 +28,7 @@ public class DecomposerRecipeProvider extends RecipeProvider {
 	}
 
 	protected static InventoryChangeTrigger.TriggerInstance hasItems(ItemLike... itemProviders) {
-		ItemPredicate[] predicates = Arrays.stream(itemProviders).map(DecomposerRecipeProvider::createPredicate).toArray(ItemPredicate[]::new);
+		ItemPredicate[] predicates = Arrays.stream(itemProviders).map(DecomposingRecipeProvider::createPredicate).toArray(ItemPredicate[]::new);
 		return inventoryTrigger(predicates);
 	}
 

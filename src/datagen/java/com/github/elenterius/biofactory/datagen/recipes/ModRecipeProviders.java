@@ -19,8 +19,9 @@ public final class ModRecipeProviders {
 		RECIPE_PROVIDERS.add(new FillingRecipeProvider(output));
 		RECIPE_PROVIDERS.add(new EmptyingRecipeProvider(output));
 
-		RECIPE_PROVIDERS.add(new DecomposerRecipeProvider(output));
-		RECIPE_PROVIDERS.add(new BioForgeRecipeProvider(output));
+		RECIPE_PROVIDERS.add(new DecomposingRecipeProvider(output));
+		RECIPE_PROVIDERS.add(new BioForgingRecipeProvider(output));
+		RECIPE_PROVIDERS.add(new VanillaRecipeProvider(output));
 
 		generator.addProvider(run, new DataProvider() {
 

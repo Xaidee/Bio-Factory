@@ -3,6 +3,7 @@ package com.github.elenterius.biofactory;
 import com.github.elenterius.biofactory.init.ModBlocks;
 import com.github.elenterius.biofactory.init.ModFluids;
 import com.github.elenterius.biofactory.init.ModItems;
+import com.github.elenterius.biofactory.init.ModRecipes;
 import com.github.elenterius.biomancy.api.livingtool.LivingTool;
 import com.github.elenterius.biomancy.util.ComponentUtil;
 import java.util.Set;
@@ -38,6 +39,8 @@ public final class BioFactoryMod {
 
 		ModFluids.FLUID_TYPES.register(modEventBus);
 		ModFluids.FLUIDS.register(modEventBus);
+
+		ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
 
 		CREATIVE_TABS.register(modEventBus);
 	}

@@ -1,7 +1,6 @@
-package com.github.elenterius.biofactory.init.client;
+package com.github.elenterius.biofactory.init;
 
 import com.github.elenterius.biofactory.BioFactoryMod;
-import com.github.elenterius.biofactory.init.ModFluids;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,7 +20,6 @@ public final class ClientSetupHandler {
 	@SubscribeEvent
 	public static void onSetup(final FMLClientSetupEvent event) {
 		setBlockRenderLayers();
-
 		event.enqueueWork(ClientSetupHandler::onPostSetup);
 	}
 
