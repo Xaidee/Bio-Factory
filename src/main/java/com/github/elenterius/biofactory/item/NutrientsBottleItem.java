@@ -15,20 +15,32 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.gameevent.GameEvent;
 
 public class NutrientsBottleItem extends Item {
 
 	public static final int FLUID_AMOUNT = 250;
 
 	public NutrientsBottleItem(Properties properties) {
-		super(properties);
+		super(properties.craftRemainder(Items.GLASS_BOTTLE).food(createFoodProperties()));
+	}
+
+	private static FoodProperties createFoodProperties() {
+		float pct = (float) FLUID_AMOUNT / BiomancyIntegration.convertTofluidAmount(ModItems.NUTRIENT_BAR.get().getDefaultInstance());
+		int nutrition = Mth.floor(pct * ModFoods.NUTRIENT_BAR.getNutrition());
+		float saturation = pct * ModFoods.NUTRIENT_BAR.getSaturationModifier();
+		return new FoodProperties.Builder().nutrition(nutrition).saturationMod(saturation).alwaysEat().build();
+	}
+
+	@Override
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+		return ItemUtils.startUsingInstantly(level, player, hand);
 	}
 
 	@Override
@@ -44,28 +56,19 @@ public class NutrientsBottleItem extends Item {
 			livingEntity.removeEffect(MobEffects.HUNGER);
 		}
 
-		if (livingEntity instanceof Player player) {
-			float pct = (float) FLUID_AMOUNT / BiomancyIntegration.convertTofluidAmount(ModItems.NUTRIENT_BAR.get().getDefaultInstance());
-			int nutrition = Mth.floor(pct * ModFoods.NUTRIENT_BAR.getNutrition());
-			float saturation = pct * ModFoods.NUTRIENT_BAR.getSaturationModifier();
-			player.getFoodData().eat(nutrition, saturation);
-		}
-
 		if (MobUtil.isCreativePlayer(livingEntity)) {return stack;}
 
-		stack.shrink(1);
 		if (stack.isEmpty()) {
 			return new ItemStack(Items.GLASS_BOTTLE);
 		}
 
 		if (livingEntity instanceof Player player) {
-			ItemStack itemStack = new ItemStack(Items.GLASS_BOTTLE);
+			ItemStack itemStack = Items.GLASS_BOTTLE.getDefaultInstance();
 			if (!player.getInventory().add(itemStack)) {
 				player.drop(itemStack, false);
 			}
 		}
 
-		livingEntity.gameEvent(GameEvent.EAT); //maybe should be DRINK instead, but only potions trigger that event
 		return stack;
 	}
 
@@ -87,11 +90,6 @@ public class NutrientsBottleItem extends Item {
 	@Override
 	public SoundEvent getEatingSound() {
 		return SoundEvents.GENERIC_DRINK;
-	}
-
-	@Override
-	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-		return ItemUtils.startUsingInstantly(level, player, hand);
 	}
 
 }

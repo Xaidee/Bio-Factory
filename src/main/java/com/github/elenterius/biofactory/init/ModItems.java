@@ -12,7 +12,6 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,9 +21,8 @@ import net.minecraftforge.registries.RegistryObject;
 public final class ModItems {
 
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BioFactoryMod.MOD_ID);
-//	public static final RegistryObject<EffectCureItem> NUTRIENT_BAR = registerItem("nutrient_bar", props -> new EffectCureItem(props.food(ModFoods.NUTRIENT_BAR)));
-public static final RegistryObject<NutrientsBottleItem> NUTRIENTS_BOTTLE = registerItem("nutrients_fluid_bottle",
-	properties -> new NutrientsBottleItem(properties.craftRemainder(Items.BUCKET).stacksTo(1).rarity(Rarity.COMMON)));
+
+	public static final RegistryObject<NutrientsBottleItem> NUTRIENTS_BOTTLE = registerItem("nutrients_fluid_bottle", properties -> new NutrientsBottleItem(properties.stacksTo(16).rarity(Rarity.COMMON)));
 
 	private ModItems() {}
 
