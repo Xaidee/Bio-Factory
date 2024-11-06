@@ -16,7 +16,7 @@ public class MixingRecipeProvider extends ProcessingRecipeProvider {
 	@Override
 	protected void init() {
 		create("nutrients_fluid_from_paste", recipeBuilder -> {
-				int fluidAmount = BiomancyIntegration.convertTofluidAmount(ModItems.NUTRIENT_PASTE.get().getDefaultInstance());
+				int fluidAmount = BiomancyIntegration.convertToFluidAmount(ModItems.NUTRIENT_PASTE.get().getDefaultInstance());
 				if (fluidAmount <= 0) {throw new IllegalArgumentException("Cannot create nutrients_fluid_gel_from_paste with amount of 0");}
 				return recipeBuilder
 					.require(Fluids.WATER, fluidAmount * 4)

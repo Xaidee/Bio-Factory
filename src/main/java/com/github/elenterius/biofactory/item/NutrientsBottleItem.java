@@ -32,7 +32,7 @@ public class NutrientsBottleItem extends Item {
 	}
 
 	private static FoodProperties createFoodProperties() {
-		float pct = (float) FLUID_AMOUNT / BiomancyIntegration.convertTofluidAmount(ModItems.NUTRIENT_BAR.get().getDefaultInstance());
+		float pct = (float) FLUID_AMOUNT / BiomancyIntegration.convertToFluidAmount(ModItems.NUTRIENT_BAR.get().getDefaultInstance());
 		int nutrition = Mth.floor(pct * ModFoods.NUTRIENT_BAR.getNutrition());
 		float saturation = pct * ModFoods.NUTRIENT_BAR.getSaturationModifier();
 		return new FoodProperties.Builder().nutrition(nutrition).saturationMod(saturation).alwaysEat().build();

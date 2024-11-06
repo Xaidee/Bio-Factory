@@ -16,7 +16,7 @@ public class CompactingRecipeProvider extends ProcessingRecipeProvider {
 	@Override
 	protected void init() {
 		create("nutrient_bar_from_fluid", recipeBuilder -> {
-				int fluidAmount = BiomancyIntegration.convertTofluidAmount(ModItems.NUTRIENT_BAR.get().getDefaultInstance());
+				int fluidAmount = BiomancyIntegration.convertToFluidAmount(ModItems.NUTRIENT_BAR.get().getDefaultInstance());
 				if (fluidAmount <= 0) {throw new IllegalArgumentException("Cannot create nutrients_fluid_gel_from_paste with amount of 0");}
 				return recipeBuilder
 					.require(ModFluids.NUTRIENTS_FLUID.get(), fluidAmount)
