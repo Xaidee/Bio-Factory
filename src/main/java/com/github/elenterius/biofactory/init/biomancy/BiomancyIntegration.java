@@ -1,6 +1,8 @@
 package com.github.elenterius.biofactory.init.biomancy;
 
 import com.github.elenterius.biofactory.init.ModFluids;
+import com.github.elenterius.biofactory.init.ModItems;
+import com.github.elenterius.biofactory.item.NutrientsBottleItem;
 import com.github.elenterius.biomancy.api.nutrients.Nutrients;
 import com.github.elenterius.biomancy.api.nutrients.fluid.FluidNutrients;
 import com.github.elenterius.biomancy.api.nutrients.fluid.FluidToFuelConversion;
@@ -22,7 +24,7 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 public final class BiomancyIntegration {
 
 	public static final int GLASS_BOTTLE_AMOUNT = 250;
-	public static final int BUCKET_AMOUNT = 1000;
+	//	public static final int BUCKET_AMOUNT = 1000;
 
 	public static final FluidToFuelConversion FLUID_TO_FUEL_CONVERSION = fluidStack -> FluidToFuelConversion.MILLI_FUEL_SCALE / 10;
 
@@ -47,6 +49,10 @@ public final class BiomancyIntegration {
 	}
 
 	public static void onPostSetup() {
+		int fuel = convertToFuelAmount(NutrientsBottleItem.FLUID_AMOUNT);
+		Nutrients.registerFuel(ModItems.NUTRIENTS_BOTTLE.get(), fuel);
+		Nutrients.registerRepairMaterial(ModItems.NUTRIENTS_BOTTLE.get(), fuel * 2);
+
 		FluidNutrients.register(ModFluids.NUTRIENTS_FLUID, FLUID_TO_FUEL_CONVERSION);
 
 		Tributes.register(AllItems.BUILDERS_TEA.get(), BUILDER_TEA_TRIBUTE);
@@ -62,8 +68,8 @@ public final class BiomancyIntegration {
 		return Nutrients.getFuelValue(resource) * FluidToFuelConversion.MILLI_FUEL_SCALE / FLUID_TO_FUEL_CONVERSION.getMilliFuelPerUnit(null);
 	}
 
-	public static double convertToFuelAmount(int fluidAmount) {
-		return (double) fluidAmount * FLUID_TO_FUEL_CONVERSION.getMilliFuelPerUnit(null) / FluidToFuelConversion.MILLI_FUEL_SCALE;
+	public static int convertToFuelAmount(int fluidAmount) {
+		return fluidAmount * FLUID_TO_FUEL_CONVERSION.getMilliFuelPerUnit(null) / FluidToFuelConversion.MILLI_FUEL_SCALE;
 	}
 
 }
