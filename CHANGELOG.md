@@ -1,3 +1,16 @@
+## [0.3.0](https://github.com/Elenterius/Bio-Factory/compare/1.20.1-v0.2.0...1.20.1-v0.3.0) (2024-11-07)
+
+
+### Features
+
+* improve bottle of fluid nutrients, make it a proper food item and update the texture ([698c1e1](https://github.com/Elenterius/Bio-Factory/commit/698c1e180c300e5194c91cb40cad785317d33d50))
+* update biomancy dependency ([4fc6cf9](https://github.com/Elenterius/Bio-Factory/commit/4fc6cf921a2565f1a725391f51c9beed46b7732e))
+
+
+### Bug Fixes
+
+* fix fuel and repair values of fluid nutrients bottle ([f1c6aef](https://github.com/Elenterius/Bio-Factory/commit/f1c6aef1c4a850555b830ccd23c63dbe93c9ca3c))
+
 ## [0.2.0](https://github.com/Elenterius/Bio-Factory/compare/1.20.1-v0.1.0...1.20.1-v0.2.0) (2024-11-02)
 
 
