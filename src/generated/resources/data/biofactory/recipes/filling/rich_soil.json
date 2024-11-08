@@ -1,0 +1,24 @@
+{
+  "type" : "create:filling",
+  "conditions" : [
+    {
+      "type" : "forge:mod_loaded",
+      "modid" : "farmersdelight"
+    }
+  ],
+  "ingredients" : [
+    {
+      "item" : "minecraft:dirt"
+    },
+    {
+      "amount" : 500,
+      "fluid" : "biofactory:nutrients_fluid",
+      "nbt" : {}
+    }
+  ],
+  "results" : [
+    {
+      "item" : "farmersdelight:rich_soil"
+    }
+  ]
+}
