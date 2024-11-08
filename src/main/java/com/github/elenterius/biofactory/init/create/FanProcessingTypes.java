@@ -6,11 +6,12 @@ import com.github.elenterius.biomancy.init.ModBlocks;
 import com.github.elenterius.biomancy.init.ModFluids;
 import com.github.elenterius.biomancy.init.ModMobEffects;
 import com.github.elenterius.biomancy.init.ModParticleTypes;
+import com.github.elenterius.biomancy.statuseffect.CorrosiveEffect;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingTypeRegistry;
 import com.simibubi.create.foundation.utility.Color;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -18,7 +19,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -81,18 +81,23 @@ public final class FanProcessingTypes {
 		@Nullable
 		public List<ItemStack> process(ItemStack stack, Level level) {
 			if (stack.getItem() instanceof BlockItem blockItem) {
-				return process(blockItem.getBlock())
-					.map(Block::asItem).map(Item::getDefaultInstance).map(List::of)
-					.orElse(null);
+				Block processed = process(blockItem.getBlock());
+				if (processed != null) {
+					ArrayList<ItemStack> list = new ArrayList<>();
+					ItemStack resultStack = processed.asItem().getDefaultInstance();
+					resultStack.setCount(stack.getCount());
+					list.add(resultStack);
+					return list;
+				}
 			}
 			return null;
 		}
 
-		protected Optional<Block> process(Block block) {
-			if (block instanceof WeatheringCopper && WeatheringCopper.getNext(block).isPresent()) {
-				return Optional.of(WeatheringCopper.getNext(block).get());
+		protected @Nullable Block process(Block block) {
+			if (block instanceof WeatheringCopper) {
+				return WeatheringCopper.getNext(block).orElse(null);
 			}
-			return AcidInteractions.NORMAL_TO_ERODED_BLOCK_CONVERSION.containsKey(block) ? Optional.of((AcidInteractions.NORMAL_TO_ERODED_BLOCK_CONVERSION.get(block)).getBlock()) : Optional.empty();
+			return AcidInteractions.NORMAL_TO_ERODED_BLOCK_CONVERSION.containsKey(block) ? (AcidInteractions.NORMAL_TO_ERODED_BLOCK_CONVERSION.get(block)).getBlock() : null;
 		}
 
 		@Override
@@ -116,7 +121,10 @@ public final class FanProcessingTypes {
 			if (level.isClientSide) {return;}
 
 			if (entity instanceof LivingEntity livingEntity) {
-				ModMobEffects.CORROSIVE.get().applyEffectTick(livingEntity, 0);
+				CorrosiveEffect effect = ModMobEffects.CORROSIVE.get();
+				if (effect.isDurationEffectTick(livingEntity.tickCount, 0)) {
+					effect.applyEffectTick(livingEntity, 0);
+				}
 			}
 		}
 
