@@ -1,3 +1,16 @@
+## [0.4.0](https://github.com/Elenterius/Bio-Factory/compare/1.20.1-v0.3.0...1.20.1-v0.4.0) (2024-11-08)
+
+
+### Features
+
+* add alternative recipe for rich-soil from Farmer's Delight ([7d50cc1](https://github.com/Elenterius/Bio-Factory/commit/7d50cc1328c98c34a4a43cb8eefcb23fcb091988))
+* add bio-factory logo ([def2bde](https://github.com/Elenterius/Bio-Factory/commit/def2bde218f5f4b42d06df034901fd6f06e91020))
+
+
+### Bug Fixes
+
+* fix acid fan processing crashing the game and dealing too much damage to mobs ([5899316](https://github.com/Elenterius/Bio-Factory/commit/58993164e285be63d0e8cf0286a42cb3c32f344f))
+
 ## [0.3.0](https://github.com/Elenterius/Bio-Factory/compare/1.20.1-v0.2.0...1.20.1-v0.3.0) (2024-11-07)
 
 
