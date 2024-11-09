@@ -22,13 +22,17 @@ import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.util.Lazy;
+import org.jetbrains.annotations.Nullable;
 
 public class NutrientsBottleItem extends Item {
 
 	public static final int FLUID_AMOUNT = 250;
 
+	private final Lazy<FoodProperties> foodProperties = Lazy.of(NutrientsBottleItem::createFoodProperties);
+
 	public NutrientsBottleItem(Properties properties) {
-		super(properties.craftRemainder(Items.GLASS_BOTTLE).food(createFoodProperties()));
+		super(properties.craftRemainder(Items.GLASS_BOTTLE));
 	}
 
 	private static FoodProperties createFoodProperties() {
@@ -36,6 +40,16 @@ public class NutrientsBottleItem extends Item {
 		int nutrition = Mth.floor(pct * ModFoods.NUTRIENT_BAR.getNutrition());
 		float saturation = pct * ModFoods.NUTRIENT_BAR.getSaturationModifier();
 		return new FoodProperties.Builder().nutrition(nutrition).saturationMod(saturation).alwaysEat().build();
+	}
+
+	@Override
+	public boolean isEdible() {
+		return true;
+	}
+
+	@Override
+	public @Nullable FoodProperties getFoodProperties() {
+		return foodProperties.get();
 	}
 
 	@Override
