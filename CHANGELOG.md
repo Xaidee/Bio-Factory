@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/Elenterius/Bio-Factory/compare/1.20.1-v0.4.0...1.20.1-v0.4.1) (2024-11-09)
+
+
+### Bug Fixes
+
+* fix startup crash caused by accessing the nutrient bar too early ([8af3dd4](https://github.com/Elenterius/Bio-Factory/commit/8af3dd443961d409fbd26ddbd6e38e9e573d1aaa))
+
 ## [0.4.0](https://github.com/Elenterius/Bio-Factory/compare/1.20.1-v0.3.0...1.20.1-v0.4.0) (2024-11-08)
 
 
