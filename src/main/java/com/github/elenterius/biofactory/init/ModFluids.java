@@ -25,7 +25,7 @@ public final class ModFluids {
 	public static final RegistryObject<FluidType> NUTRIENTS_TYPE = registerType("nutrients_fluid", properties -> properties);
 	public static final Supplier<ForgeFlowingFluid.Properties> NUTRIENTS_FLUID_PROPERTIES = () -> new ForgeFlowingFluid.Properties(NUTRIENTS_TYPE, ModFluids.NUTRIENTS_FLUID,
 		ModFluids.NUTRIENTS_FLUID);
-	public static final RegistryObject<ForgeFlowingFluid> NUTRIENTS_FLUID = register("nutrients_fluid", () -> new VirtualFluid(NUTRIENTS_FLUID_PROPERTIES.get()));
+	public static final RegistryObject<ForgeFlowingFluid> NUTRIENTS_FLUID = register("nutrients_fluid", () -> new VirtualFluid(NUTRIENTS_FLUID_PROPERTIES.get(), true));
 
 	private ModFluids() {}
 

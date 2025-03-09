@@ -7,12 +7,13 @@ import com.github.elenterius.biomancy.init.ModFluids;
 import com.github.elenterius.biomancy.init.ModMobEffects;
 import com.github.elenterius.biomancy.init.ModParticleTypes;
 import com.github.elenterius.biomancy.statuseffect.CorrosiveEffect;
+import com.simibubi.create.api.registry.CreateBuiltInRegistries;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
-import com.simibubi.create.content.kinetics.fan.processing.FanProcessingTypeRegistry;
-import com.simibubi.create.foundation.utility.Color;
+import net.createmod.catnip.theme.Color;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
@@ -36,7 +37,7 @@ public final class FanProcessingTypes {
 	}
 
 	private static <T extends FanProcessingType> T register(String name, T type) {
-		FanProcessingTypeRegistry.register(BioFactoryMod.createRL(name), type);
+		Registry.register(CreateBuiltInRegistries.FAN_PROCESSING_TYPE, BioFactoryMod.createRL(name), type);
 		return type;
 	}
 

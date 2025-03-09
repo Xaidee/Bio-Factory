@@ -2,17 +2,17 @@ package com.github.elenterius.biofactory.init.create;
 
 import com.github.elenterius.biofactory.init.ModFluids;
 import com.github.elenterius.biomancy.util.CombatUtil;
-import com.simibubi.create.content.fluids.OpenEndedPipe;
+import com.simibubi.create.api.effect.OpenPipeEffectHandler;
 import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.fluids.FluidStack;
 
 public final class EffectHandlers {
@@ -20,28 +20,23 @@ public final class EffectHandlers {
 	private EffectHandlers(){ }
 
 	static void register() {
-		OpenEndedPipe.registerEffectHandler(new AcidEffectHandler());
-		OpenEndedPipe.registerEffectHandler(new NutrientsEffectHandler());
+		OpenPipeEffectHandler.REGISTRY.register(com.github.elenterius.biomancy.init.ModFluids.ACID.get().getSource(), new AcidEffectHandler());
+		OpenPipeEffectHandler.REGISTRY.register(ModFluids.NUTRIENTS_FLUID.get().getSource(), new NutrientsEffectHandler());
 	}
 
-	private static class AcidEffectHandler implements OpenEndedPipe.IEffectHandler {
+	private static class AcidEffectHandler implements OpenPipeEffectHandler {
 
 		@Override
-		public boolean canApplyEffects(OpenEndedPipe openEndedPipe, FluidStack fluidStack) {
-			return fluidStack.getFluid().getFluidType() == com.github.elenterius.biomancy.init.ModFluids.ACID_TYPE.get();
-		}
+		public void apply(Level level, AABB area, FluidStack fluid) {
+			if (level.getGameTime() % 5 != 0)
+				return;
 
-		@Override
-		public void applyEffects(OpenEndedPipe openEndedPipe, FluidStack fluidStack) {
-			Level level = openEndedPipe.getWorld();
-			if (level.getGameTime() % 5 != 0) {return;}
-
-			List<LivingEntity> mobs = level.getEntitiesOfClass(LivingEntity.class, openEndedPipe.getAOE(), livingEntity -> !CombatUtil.hasAcidEffect(livingEntity));
+			List<LivingEntity> mobs = level.getEntitiesOfClass(LivingEntity.class, area, livingEntity -> !CombatUtil.hasAcidEffect(livingEntity));
 			for (LivingEntity mob : mobs) {
 				CombatUtil.applyAcidEffect(mob, 4);
 			}
 
-			BlockPos.betweenClosedStream(openEndedPipe.getAOE()).forEach(pos -> corrodeCopper(level, pos));
+			BlockPos.betweenClosedStream(area).forEach(pos -> corrodeCopper(level, pos));
 		}
 
 		private void corrodeCopper(Level level, BlockPos pos) {
@@ -56,23 +51,17 @@ public final class EffectHandlers {
 
 	}
 
-	private static class NutrientsEffectHandler implements OpenEndedPipe.IEffectHandler {
+	private static class NutrientsEffectHandler implements OpenPipeEffectHandler {
 
 		@Override
-		public boolean canApplyEffects(OpenEndedPipe pipe, FluidStack fluid) {
-			return fluid.getFluid().getFluidType() == ModFluids.NUTRIENTS_TYPE.get();
-		}
+		public void apply(Level level, AABB area, FluidStack fluid) {
+			if (level.getGameTime() % 5 != 0)
+				return;
 
-		@Override
-		public void applyEffects(OpenEndedPipe pipe, FluidStack fluid) {
-			Level level = pipe.getWorld();
-			if (level.getGameTime() % 5 != 0) {return;}
-
-			for (Player player : level.getEntitiesOfClass(Player.class, pipe.getAOE(), LivingEntity::isAlive)) {
-				player.addEffect(new MobEffectInstance(MobEffects.SATURATION, 7, 0, false, false, false));
+			List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, area, LivingEntity::isAffectedByPotions);
+			for (LivingEntity entity : entities) {
+				entity.addEffect(new MobEffectInstance(MobEffects.SATURATION, 7, 0, false, false, false));
 			}
 		}
-
 	}
-
 }
