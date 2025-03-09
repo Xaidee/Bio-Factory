@@ -1,3 +1,10 @@
+## [0.5.0](https://github.com/Elenterius/Bio-Factory/compare/1.20.1-v0.4.1...1.20.1-v0.5.0) (2025-03-09)
+
+
+### Features
+
+* port to Create 6.0.2 ([a7f4c12](https://github.com/Elenterius/Bio-Factory/commit/a7f4c123cabb508b05024b428d43d517a4e89f5b)), closes [#2](https://github.com/Elenterius/Bio-Factory/issues/2)
+
 ## [0.4.1](https://github.com/Elenterius/Bio-Factory/compare/1.20.1-v0.4.0...1.20.1-v0.4.1) (2024-11-09)
 
 
@@ -47,13 +54,4 @@
 ### Bug Fixes
 
 * fix nutrient bar from fluid recipe not consuming the correct amount of fluid ([d0ef1d3](https://github.com/Elenterius/Bio-Factory/commit/d0ef1d3a3bc96ff9c269df36ac919b1d0dd48aee))
-
-## [0.1.0](https://github.com/Elenterius/Bio-Factory/compare/823928a6d7ca83f16901e2b561aa35561ab74b88...1.20.1-v0.1.0) (2024-10-17)
-
-
-### Features
-
-* add compacting and mixing recipes for nutrient paste and fluid ([823928a](https://github.com/Elenterius/Bio-Factory/commit/823928a6d7ca83f16901e2b561aa35561ab74b88))
-* add Create fluid effects (open pipe) for gastric acid and nutrients fluid ([f0c8cde](https://github.com/Elenterius/Bio-Factory/commit/f0c8cdef54793deaa8f222180983ff0ea4193b8d))
-* add gastric acid fan processing for mobs and item blocks ([bf9c594](https://github.com/Elenterius/Bio-Factory/commit/bf9c59413300cdc9b12aeae07ea048fe0804de6b))
 
